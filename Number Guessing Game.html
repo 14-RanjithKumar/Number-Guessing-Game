@@ -1,0 +1,66 @@
+<!doctype html><html><head><style type="text/css">body{
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  align-items: center;
+  background-color: green;
+}
+.container{
+  text-align: center;
+  height: 200px;
+  width: 500px;
+  background-color: white;
+  border-radius: 6px;
+}
+
+.container input{
+  width: 200px;
+  height: 30px;
+  padding-left: 12px;
+  outline: none;
+}
+
+.container button{
+  height: 36px;
+  width: 120px;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+}</style></head><body><div class="container">
+  <h2>Number Guessing Game</h2>
+  <p>Enter a number between 1 - 10 </p>
+  <input type="text" placeholder="Enter a number" id="inputValue" maxlength="2">
+  <button type="button" id="GuessBtn">Guess</button>
+  <p id="msg"></p>
+</div><script type="text/javascript">
+let GuessBtn = document.querySelector('#GuessBtn');
+let msg = document.querySelector('#msg');
+GuessBtn.addEventListener('click', guessNumber);
+
+let generateNumber = (Math.round(Math.random() * 9) + 1);
+
+function guessNumber() {
+  let inputValue = document.querySelector("#inputValue");
+
+  if (inputValue.value != '' && !isNaN(inputValue.value) && inputValue.value <= 10) {
+    if (inputValue.value == generateNumber) {
+      msg.textContent = "You are Correct the number is " + generateNumber;
+    }
+    else if (inputValue.value < generateNumber) {
+      msg.textContent = "You're guess is too small";
+
+    }
+    else {
+      msg.textContent = "You're guess is to large";
+    }
+    inputValue.value = '';
+  }
+  else{
+    msg.textContent = "You need to enter a value between 1 - 10";
+    inputValue.value = '';
+  }
+}
+
+</script></body><html>
